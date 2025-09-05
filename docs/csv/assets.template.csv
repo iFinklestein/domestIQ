@@ -1,0 +1,2 @@
+// /docs/csv/assets.template.csv
+name,categoryId,locationId,purchaseDate,purchasePrice,vendorId,serialNumber,model,condition,notes,tags

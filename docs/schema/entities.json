@@ -1,0 +1,181 @@
+// /docs/schema/entities.json
+{
+  "Asset": {
+    "name": "Asset",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Name of the asset"
+      },
+      "categoryId": {
+        "type": "string",
+        "description": "Reference to Category.id. Indexed for filtering."
+      },
+      "locationId": {
+        "type": "string",
+        "description": "Reference to Location.id. Indexed for filtering."
+      },
+      "purchaseDate": {
+        "type": "string",
+        "format": "date",
+        "description": "Indexed for sorting and filtering."
+      },
+      "purchasePrice": {
+        "type": "number",
+        "description": "Purchase price of the asset."
+      },
+      "vendorId": {
+        "type": "string",
+        "description": "Reference to Vendor.id. Indexed for filtering."
+      },
+      "serialNumber": {
+        "type": "string",
+        "description": "Serial number of the asset. Indexed for search."
+      },
+      "model": {
+        "type": "string",
+        "description": "Model name or number of the asset."
+      },
+      "condition": {
+        "type": "string",
+        "enum": [
+          "New",
+          "Good",
+          "Fair",
+          "Poor"
+        ],
+        "default": "Good"
+      },
+      "notes": {
+        "type": "string",
+        "description": "Freeform notes about the asset."
+      },
+      "photos": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": "Array of URLs to photos of the asset."
+      },
+      "receipts": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": "Array of URLs to receipts or proof of purchase."
+      },
+      "warrantyId": {
+        "type": "string",
+        "description": "Reference to Warranty.id. Indexed for filtering."
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Array of tags for categorization and search. Indexed."
+      }
+    },
+    "required": [
+      "name"
+    ]
+  },
+  "Category": {
+    "name": "Category",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Unique name of the category."
+      },
+      "description": {
+        "type": "string",
+        "description": "Optional description for the category."
+      }
+    },
+    "required": [
+      "name"
+    ]
+  },
+  "Location": {
+    "name": "Location",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Name of the location (e.g., 'Kitchen', 'Office')."
+      },
+      "parentId": {
+        "type": "string",
+        "description": "Self-reference to Location.id for creating a hierarchy (e.g., 'Pantry' inside 'Kitchen')."
+      }
+    },
+    "required": [
+      "name"
+    ]
+  },
+  "Vendor": {
+    "name": "Vendor",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "website": {
+        "type": "string",
+        "format": "uri"
+      },
+      "phone": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      }
+    },
+    "required": [
+      "name"
+    ]
+  },
+  "Warranty": {
+    "name": "Warranty",
+    "type": "object",
+    "properties": {
+      "providerName": {
+        "type": "string",
+        "description": "Name of the warranty provider."
+      },
+      "policyNumber": {
+        "type": "string"
+      },
+      "startDate": {
+        "type": "string",
+        "format": "date"
+      },
+      "endDate": {
+        "type": "string",
+        "format": "date",
+        "description": "Indexed for filtering expiring warranties."
+      },
+      "terms": {
+        "type": "string",
+        "description": "Details or terms of the warranty policy."
+      },
+      "files": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": "Array of URLs to warranty documents."
+      }
+    },
+    "required": [
+      "providerName",
+      "endDate"
+    ]
+  }
+}
