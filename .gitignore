@@ -23,3 +23,17 @@ yarn-error.log*
 Thumbs.db
 .vscode/*
 !.vscode/extensions.json
+.vs/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+*.log
+.env
+.env.*.local
+node_modules/
+dist/
+build/
+.cache/
+.next/
+out/
